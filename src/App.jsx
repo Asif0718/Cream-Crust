@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./component/Navbar";
 import Banner from "./component/Banner";
@@ -10,20 +10,21 @@ import ThankingCustomers from "./component/ThankingCustomers";
 import FollowUs from "./component/FollowUs";
 import Footer from "./component/Footer";
 
-import MenuPage from "./component/pages/MenuPage"; // <-- new page for ExploreMenu clicks
+import MenuPage from "./component/pages/MenuPage";
+import AddToCart from "./component/pages/CartPage"; // ✅ make sure this exists
+import CartPage from "./component/pages/CartPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
-        {/* Home page (all sections together) */}
         <Route
           path="/"
           element={
             <>
               <Banner />
-             {/* <ExploreMenu />*/}
+              <ExploreMenu /> 
               <WhyChooseUs />
               <HealthyFood />
               <DeliveryPayment />
@@ -33,14 +34,12 @@ function App() {
             </>
           }
         />
-
-        {/* Dynamic route for ExploreMenu */}
         <Route path="/menu/:category" element={<MenuPage />} />
-        <Route path="/exploreMenu" element={<ExploreMenu/>}/>
-        <Route path="/payment-delivery" element={<DeliveryPayment/>}/>
-        
+        <Route path="/exploreMenu" element={<ExploreMenu />} />
+        <Route path="/payment-delivery" element={<DeliveryPayment />} />
+        <Route path="/cart" element={<CartPage />} /> 
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

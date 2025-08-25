@@ -63,7 +63,7 @@ function ExploreMenu() {
             </div>
           </section>
           <div className="ml-7">
-            <Button className='bg-yellow-600' onClick={()=> navigate("/")}><ArrowLeft/>Back </Button>
+           {/* <Button className='bg-yellow-600' onClick={()=> navigate("/")}><ArrowLeft/>Back </Button>*/}
           </div>
     </div>
   );

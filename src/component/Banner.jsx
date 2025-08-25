@@ -19,7 +19,7 @@ function Banner() {
           <button className="bg-yellow-600 text-white px-6 py-2 rounded-lg mr-4 cursor-pointer hover:shadow-lg hover:scale-105 transition" onClick={() => navigate("exploreMenu")}>
             View Menu
           </button>
-          <button className="border border-yellow-600 text-yellow-600 px-6 py-2 rounded-lg cursor-pointer hover:shadow-lg hover:scale-105 transition"  onClick={() => navigate("exploreMenu")}>
+          <button className="border border-yellow-600 text-yellow-600 px-6 py-2 rounded-lg cursor-pointer hover:shadow-lg hover:scale-105 transition"  onClick={() => navigate("/cart")}>
             Order Now
           </button>
         </div>

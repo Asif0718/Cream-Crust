@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext"; // ✅ import cart context
+import { useState } from "react"; // ✅ added
 
 function MenuPage() {
   const { category } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart(); // ✅ addToCart from context
+  const [addedItems, setAddedItems] = useState([]); // ✅ track added items
 
   // Sample items data
   const menuItems = {
@@ -55,6 +57,15 @@ function MenuPage() {
   const key = category.toLowerCase();
   const items = menuItems[key] || [];
 
+  const handleAdd = (item) => {
+    addToCart({
+      name: item.name,
+      img: item.img,
+      price: parseInt(item.price.replace(/[^0-9]/g, "")),
+    });
+    setAddedItems((prev) => [...prev, item.name]); // ✅ mark as added
+  };
+
   return (
     <section className="p-6">
       <h1 className="text-3xl mt-12 text-center font-bold capitalize mb-6">
@@ -63,43 +74,40 @@ function MenuPage() {
 
       {items.length > 0 ? (
         <div className="grid gap-8 md:grid-cols-6 justify-center px-10">
-          {items.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-4 border rounded-lg shadow hover:shadow-lg transition hover:scale-105"
-            >
-              {item.img && (
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-40 h-40 object-cover rounded-md mb-3 mx-auto"
-                />
-              )}
-              <h2 className="text-lg font-semibold text-center">{item.name}</h2>
-              <p className="text-gray-600 text-center">{item.price}</p>
-
-              {/* ✅ Fix: pass cleaned item to addToCart */}
-              <Button
-                className="bg-green-600 w-full mt-3"
-                onClick={() =>
-                  addToCart({
-                    name: item.name,
-                    img: item.img,
-                    price: parseInt(item.price.replace(/[^0-9]/g, "")), // numeric only
-                  })
-                }
+          {items.map((item, idx) => {
+            const isAdded = addedItems.includes(item.name);
+            return (
+              <div
+                key={idx}
+                className="p-4 border rounded-lg shadow hover:shadow-lg transition hover:scale-105"
               >
-                Add to Cart
-              </Button>
-            </div>
-          ))}
+                {item.img && (
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-40 h-40 object-cover rounded-md mb-3 mx-auto"
+                  />
+                )}
+                <h2 className="text-lg font-semibold text-center">{item.name}</h2>
+                <p className="text-gray-600 text-center">{item.price}</p>
+
+                <Button
+                  disabled={isAdded}
+                  className={`w-full mt-3 ${isAdded ? "bg-gray-400" : "bg-green-600"}`}
+                  onClick={() => handleAdd(item)}
+                >
+                  {isAdded ? "Added" : "Add to Cart"}
+                </Button>
+              </div>
+            );
+          })}
         </div>
       ) : (
         <p className="text-gray-500">No items found for this category.</p>
       )}
 
       <div className="justify-center pt-10">
-        <Button href="exploreMenuSection"
+        <Button
           className="bg-yellow-600 ml-10"
           onClick={() => navigate("/")}
         >

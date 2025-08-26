@@ -5,7 +5,7 @@ function Banner() {
   const navigate=useNavigate();
   return (
     <div
-        className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-center"
+        className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-center" id="bannerSection"
         style={{
           backgroundImage:
             "url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/05cf3840-4756-467c-81c8-4a13f59089b9.png')",

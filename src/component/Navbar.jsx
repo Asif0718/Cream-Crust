@@ -17,6 +17,18 @@ function Navbar() {
 
         {/* Menu Links */}
         <div className="hidden md:flex space-x-6 font-roboto">
+           
+        <a
+            href="#bannerSection"
+            className="text-gray-800 hover:text-yellow-600"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </a>
+
+
+
+
           <a
             href="#exploreMenuSection"
             className="text-gray-800 hover:text-yellow-600"

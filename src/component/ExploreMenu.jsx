@@ -45,7 +45,7 @@ function ExploreMenu() {
             className="bg-gray-50 py-16 px-6 text-center"
           >
             <h1 className="text-3xl font-semibold mb-12 pt-3">Explore Menu</h1>
-            <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-center">
+            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-center">
               {items.map((item, idx) => (
                 <div
                   key={idx}

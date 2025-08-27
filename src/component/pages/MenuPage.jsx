@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useCart } from "@/context/CartContext"; // ✅ import cart context
-import { useState } from "react"; // ✅ added
+import { useCart } from "@/context/CartContext"; 
+import { useState } from "react"; 
 
 function MenuPage() {
   const { category } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart(); // ✅ addToCart from context
-  const [addedItems, setAddedItems] = useState([]); // ✅ track added items
+  const { addToCart } = useCart(); 
+  const [addedItems, setAddedItems] = useState([]); 
 
-  // Sample items data
+  // ✅ Menu items data (same as before)
   const menuItems = {
     cakes: [
       { name: "Chocolate Cake", price: "₹220/kg", img: "https://theobroma.in/cdn/shop/collections/Delicacies-01_grande.jpg?v=1711720002" },
@@ -63,7 +63,7 @@ function MenuPage() {
       img: item.img,
       price: parseInt(item.price.replace(/[^0-9]/g, "")),
     });
-    setAddedItems((prev) => [...prev, item.name]); // ✅ mark as added
+    setAddedItems((prev) => [...prev, item.name]); 
   };
 
   return (
@@ -73,19 +73,19 @@ function MenuPage() {
       </h1>
 
       {items.length > 0 ? (
-        <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-center px-10">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-4">
           {items.map((item, idx) => {
             const isAdded = addedItems.includes(item.name);
             return (
               <div
                 key={idx}
-                className="p-4 border rounded-lg shadow hover:shadow-lg transition hover:scale-105"
+                className="p-4 border rounded-lg shadow hover:shadow-lg transition hover:scale-105 bg-white flex flex-col items-center"
               >
                 {item.img && (
                   <img
                     src={item.img}
                     alt={item.name}
-                    className="w-40 h-40 object-cover rounded-md mb-3 mx-auto"
+                    className="w-full h-40 object-cover rounded-md mb-3"
                   />
                 )}
                 <h2 className="text-lg font-semibold text-center">{item.name}</h2>
@@ -106,9 +106,9 @@ function MenuPage() {
         <p className="text-gray-500">No items found for this category.</p>
       )}
 
-      <div className="justify-center pt-10">
+      <div className="flex justify-center pt-10">
         <Button
-          className="bg-yellow-600 ml-10"
+          className="bg-yellow-600"
           onClick={() => navigate("/")}
         >
           <ArrowLeft /> Back

@@ -3,7 +3,7 @@ import plate from '../images/plate.png';
 
 function HealthyFood() {
   return (
-    <div className='grid gap-8 md:grid-col mx-20 justify-center'>    
+    <div className='grid gap-8 md:grid-col mx-20 justify-center bg-white'>    
     <section id="healthyFoodSection" className="flex flex-col md:flex-row items-center py-16 px-6 bg-white">
     <img
       src={plate}

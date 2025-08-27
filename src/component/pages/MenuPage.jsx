@@ -73,7 +73,7 @@ function MenuPage() {
       </h1>
 
       {items.length > 0 ? (
-        <div className="grid gap-8 md:grid-cols-6 justify-center px-10">
+        <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 justify-center px-10">
           {items.map((item, idx) => {
             const isAdded = addedItems.includes(item.name);
             return (
